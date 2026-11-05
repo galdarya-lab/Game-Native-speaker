@@ -1,0 +1,11 @@
+/* Exact task colours; keep neutral parts and eye highlights unchanged. */
+.red-bird .art,.blue-bird .art{filter:none}
+.red-bird [fill="#68c977"],.red-bird [fill="#f77778"]{fill:#f16e7f}
+.red-bird [fill="#56a7f2"]{fill:#cd4a69}
+.blue-bird [fill="#68c977"],.blue-bird [fill="#f77778"]{fill:#69adf5}
+.blue-bird [fill="#56a7f2"]{fill:#438bd4}
+.shape-group.star .art{filter:none}
+.shape-group.star [fill="#ffdd54"]{fill:#76dc8b}
+.shape-group.star [fill="#fff2ae"]{fill:#c1ffd0}
+.shape-group.star [stroke="#e39728"]{stroke:#43a46c}
+.count-group.orange-robots .art:not(:has(rect)){filter:none}

@@ -1,0 +1,42 @@
+export const worlds = [
+ {name:'Rainbow Arcade',short:'COLOURS',asset:'rainbow',crystal:0,range:[0,7],time:'03:00–13:00 · 10 мин',color:'#ff75c8'},
+ {name:'Number City',short:'NUMBERS',asset:'numbers',crystal:1,range:[7,16],time:'13:00–24:00 · 11 мин',color:'#55d9ff'},
+ {name:'Animal Kingdom',short:'ANIMALS',asset:'animals',crystal:2,range:[16,28],time:'24:00–41:00 · 17 мин',color:'#8ded92'},
+ {name:"Glitch King’s Castle",short:'FINAL BOSS',asset:'castle',range:[28,33],time:'41:00–48:00 · 7 мин',color:'#bb96ff'}
+];
+const m=(id,world,title,studentPrompt,type,options,correctAnswer,extra={})=>({id,world,title,studentPrompt,type,options,correctAnswer,durationSeconds:60,spokenAnswer:'',hint:'Look carefully. Say it together!',assets:[worlds[world].asset],...extra});
+export const missions=[
+ m('C01',0,'Colour scanner','Find RED!','choice',['red','blue','green','yellow'],'red',{visual:'colours',spokenAnswer:'It is red!'}),
+ m('C02',0,'Odd one out','Which colour is different?','choice',['red','red','blue','red'],2,{visual:'colours',byIndex:true,spokenAnswer:'Blue is different.'}),
+ m('C03',0,'Colour detective','Look at the animals. Say the colours!','reveal',['frog','flamingo','elephant'],['green','pink','grey'],{durationSeconds:90}),
+ m('C04',0,'Mystery box','Which box has YELLOW inside? Look at the clues!','box',['apple','wave','sun'],2,{byIndex:true,reveals:['red','blue','yellow'],hint:'What colour is the sun?',durationSeconds:90}),
+ m('C05',0,'Memory challenge','Look carefully! Remember the colours!','memory',['apple','whale','star','butterfly'],['blue','yellow'],{durationSeconds:120,layout:2,questions:[{prompt:'What colour was the WHALE?',options:['pink','blue','green'],answer:'blue'},{prompt:'What colour was the STAR?',options:['yellow','red','black'],answer:'yellow'}]}),
+ m('C06',0,'Spot 3 differences','Find 3 differences! Tell PIX what changed!','difference',[],['button','star','prize'],{durationSeconds:120,visual:'robots',puzzle:'spot_difference_colors',hotspots:[[77,65,10,14],[68,20,7,9],[83,40,8,17]],zoneLabels:['Arcade button in picture B','Stars in picture B','Prize in picture B'],hint:'Look at the big button, the stars and the prize.'}),
+ m('C07',0,'Quick colour spell','Say the colours! 3, 2, 1, GO!','sequenceReveal',['banana','bear','carrot'],['yellow','brown','orange']),
+ m('N01',1,'Count the stars','How many stars can you see?','choice',['18','20','22'],'20',{visual:'stars',durationSeconds:72,spokenAnswer:'There are twenty stars.'}),
+ m('N02',1,'Count the robots','Count the robots! How many robots are there?','choice',['14','15','16'],'15',{visual:'countRobots',durationSeconds:72}),
+ m('N03',1,'Number spelling','Choose the correct word!','choice',['forty-seven','fourteen-seven','seventy-four'],'forty-seven',{visual:'47',durationSeconds:72,hint:'Four tens and seven ones!'}),
+ m('N04',1,'Number sorter','Put the numbers in order. Smallest to biggest!','sort',['16','61','26','42'],['16','26','42','61'],{durationSeconds:90}),
+ m('N05',1,'Missing number','Find the missing number!','choice',['35','40','45'],'40',{visual:'10 → 20 → 30 → ? → 50',durationSeconds:72}),
+ m('N06',1,'Secret number lock','Fix the number lock!','math',['8 + 7','50 − 20','12 + 8'],['15','30','20'],{durationSeconds:96,hint:'Count slowly. Check each sum.'}),
+ m('N07',1,'Odd one out','Which number does NOT belong?','choice',['12','22','32','45'],'45',{durationSeconds:66,hint:'Look at the last digit!'}),
+ m('N08',1,'Number memory','Look carefully! Remember the numbers!','memory',['14','28','36','90'],['36'],{durationSeconds:90,layout:4,questions:[{prompt:'Which number was in the third window?',options:['36','63','34'],answer:'36'}]}),
+ m('N09',1,'Mystery number box','Find my number! I am bigger than 60 and smaller than 70. I have four ones.','box',['58','64','76'],1,{byIndex:true,reveals:['58','64','76'],durationSeconds:30}),
+ m('A01',2,'Farm gate','Which animals live on a farm? Choose all!','multi',['cow','hen','sheep','shark'],['cow','hen','sheep'],{visual:'animals',durationSeconds:72}),
+ m('A02',2,'Jungle riddles','Who am I?','riddles',['elephant','tiger','monkey'],['elephant','tiger','monkey'],{visual:'animals',durationSeconds:120,questions:['I am big and grey. I have a long nose. Who am I?','I am orange and black. I am a big cat. Who am I?','I am small. I can climb trees. Who am I?']}),
+ m('A03',2,'Ocean gate','Who lives in the sea? Choose all!','multi',['dolphin','shark','octopus','horse'],['dolphin','shark','octopus'],{visual:'animals',durationSeconds:72}),
+ m('A04',2,'Pet shop','Which animals can be pets? Choose all!','multi',['dog','cat','hamster','tiger','parrot'],['dog','cat','hamster','parrot'],{visual:'animals',durationSeconds:72}),
+ m('A05',2,'Guess the silhouette','Who am I?','choice',['giraffe','zebra','lion'],'giraffe',{visual:'silhouette',hint:'I am tall. I have a long neck.',durationSeconds:72}),
+ m('A06',2,'Animal homes sorter','Match the animals to their homes!','match',['cow','monkey','fish','dog'],['farm','jungle','sea','house'],{targets:['sea','house','jungle','farm'],durationSeconds:120}),
+ m('A07',2,'Colourful animals','Look and complete the sentences!','reveal',['zebra','flamingo','frog'],['black and white','pink','green'],{durationSeconds:72}),
+ m('A08',2,'Animal count','How many animals are there?','choice',['9','10','12'],'10',{visual:'countAnimals',spokenAnswer:'There are ten animals.',durationSeconds:72}),
+ m('A09',2,'Jungle differences','Find 3 differences!','difference',[],['parrot','flower','fish'],{visual:'jungle',durationSeconds:120,puzzle:'spot_difference_animals',hotspots:[[54,24,10,16],[90,77,8,13],[77,79,6,9]],zoneLabels:['Branch in picture B','Flower in picture B','Small fish in picture B'],hint:'Look at the branch, the flower and the fish.'}),
+ m('A10',2,'Animal memory','Look carefully! Remember the animals!','memory',['cow','tiger','dolphin','dog','elephant','parrot'],['tiger'],{layout:3,durationSeconds:90,questions:[{prompt:'Which animal was in the middle of the top row?',options:['tiger','cat','horse'],answer:'tiger'}]}),
+ m('A11',2,'What’s missing?','One animal has disappeared! Which one?','choice',['dolphin','sheep','cat'],'dolphin',{visual:'missing',durationSeconds:60}),
+ m('A12',2,'Mystery animal box','I am green. I can jump. I live near water. Which box has the animal?','box',['frog','cow','octopus'],0,{byIndex:true,visual:'silhouettes',reveals:['frog','cow','octopus'],durationSeconds:78}),
+ m('B01',3,'Boss lock 1 · Colours','Find the GREEN animal!','choice',['crab','frog','flamingo'],'frog',{visual:'animals',spokenAnswer:'The frog is green.'}),
+ m('B02',3,'Boss lock 2 · Numbers','Find the missing number!','choice',['80','90','60'],'80',{visual:'65 → 70 → 75 → ? → 85'}),
+ m('B03',3,'Boss lock 3 · Animals','Who am I? I live in the sea. I can swim. I am very clever.','choice',['dolphin','cow','parrot'],'dolphin',{visual:'animals'}),
+ m('B04',3,'Boss lock 4 · True or false','Choose all TRUE sentences!','multi',['A zebra is pink.','Forty plus twenty is sixty.','A dolphin lives in the sea.','A cow is a wild animal.'],['Forty plus twenty is sixty.','A dolphin lives in the sea.'],{durationSeconds:120}),
+ m('B05',3,'Boss lock 5 · The secret code','Count the shapes. Enter the secret code!','code',[], '324',{durationSeconds:120,hint:'RED → BLUE → GREEN. Count each group.'})
+];
